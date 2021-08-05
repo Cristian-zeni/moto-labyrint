@@ -12,10 +12,12 @@ var leftPressed = false;
 var upPressed = false;
 var downPressed = false;
 
-var dx = 0;
-var dy = -2;
+var dx = 5;
+var dy = 5;
 
-//document.addEventListener("keydown", keyDownHadler, false);
+
+document.addEventListener("keydown", keyDownHandler, false);
+
 
 function keyDownHandler(e) {
     if(e.key == "Right" || e.key == "ArrowRight") {
@@ -25,17 +27,17 @@ function keyDownHandler(e) {
         leftPressed = true;
     }
     else if(e.key == "Up" || e.key == "ArrowUp") {
-        rightPressed = true;
+        upPressed = true;
     }
     else if(e.key == "Down" || e.key == "ArrowDown") {
-        leftPressed = true;
+        downPressed = true;
     }
 }
 
 function drawCLU(){
 
     terreno.beginPath();
-    terreno.rect(Mx, My, motoWidth, motoHeight);
+    terreno.rect(dx, dy, motoWidth, motoHeight);
     terreno.fillStyle = "#FFA500";
     terreno.fill();
     terreno.closePath();
@@ -46,11 +48,20 @@ function draw(){
 
     terreno.clearRect(0, 0, canvas.width, canvas.height);
     drawCLU();
-    Mx += dx;
-    My += dy;
-
     
-
+    if(rightPressed) {
+        dx += 2;
+    }
+    else if(leftPressed) {
+        dx -= 2;
+    }
+    else if(upPressed){
+        dy -= 2;
+    }
+    else if(downPressed){
+        dy += 2;
+    }
+    
 }
 
 setInterval(draw, 10);
