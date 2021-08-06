@@ -34,7 +34,7 @@ function keyDownHandler(e) {
 function drawCLU1(){
 
     terreno.beginPath();
-    terreno.rect(dx, dy, motoWidth, motoHeight);
+    terreno.rect(dx + motoHeight/2, dy + motoWidth/2, motoWidth, motoHeight);
     terreno.fillStyle = "#FFA500";
     terreno.fill();
     terreno.closePath();
@@ -44,37 +44,39 @@ function drawCLU1(){
 function drawCLU2(){
 
     terreno.beginPath();
-    terreno.rect(dx, dy, motoHeight, motoWidth);
+    terreno.rect(dx + motoWidth/2, dy + motoHeight/2, motoHeight, motoWidth);
     terreno.fillStyle = "#FFA500";
     terreno.fill();
     terreno.closePath();
 
 }
 
-function draw(){
 
-    terreno.clearRect(0, 0, canvas.width, canvas.height);
+function draw(){
     
     switch (direction) {
         case 1: dy -= 2;
-                drawCLU1()
+                drawCLU1();
         break;
 
         case 2: dx += 2;
-                drawCLU2()
+                drawCLU2();
         break;
-
+                
         case 3: dy += 2;
-                drawCLU1()
+                drawCLU1();
+                
         break;
 
         case 4: dx -= 2;
-                drawCLU2()
+                drawCLU2();
+                
         break;
 
         default: break;
     }
     
+
 }
 
 setInterval(draw, 10);
